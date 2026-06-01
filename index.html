@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quasvx Domains</title>
+    <style>
+        /* Estilos base estilo oscuro para el menú de botones */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            overflow: hidden;
+        }
+        .menu-container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(17, 24, 39, 0.7);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 100%;
+            display: none; /* Se muestra solo si es el dominio de pages.dev */
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        p {
+            color: #9ca3af;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+        .btn-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .btn {
+            display: block;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .btn:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+    </style>
+    <script>
+        // Ejecutamos la lógica apenas cargue la página
+        document.addEventListener("DOMContentLoaded", () => {
+            const hostname = window.location.hostname;
+            let targetHTMLFile = "";
+
+            // 1. Control de los subdominios de DNSHE (Túneles)
+            if (hostname === "eeuu.cc.cd") {
+                targetHTMLFile = "/eeuu.cc.cd.html";
+            } else if (hostname === "otp.cc.cd") {
+                targetHTMLFile = "/otp.cc.cd.html";
+            }
+
+            if (targetHTMLFile !== "") {
+                // Borramos el path de la URL si existe para dejarlo limpio en la raíz
+                window.history.replaceState({}, document.title, "/");
+
+                // Hacemos el fetch para inyectar el HTML correspondiente
+                fetch(targetHTMLFile)
+                    .then(response => {
+                        if (!response.ok) throw new Error("No se pudo cargar el archivo");
+                        return response.text();
+                    })
+                    .then(htmlContent => {
+                        document.open();
+                        document.write(htmlContent);
+                        document.close();
+                    })
+                    .catch(err => console.error("Error en el túnel:", err));
+            } 
+            // 2. Si entra por el subdominio por defecto de Pages, mostramos el menú
+            else if (hostname === "mivo-cc-cd.pages.dev" || hostname === "localhost" || hostname === "127.0.0.1") {
+                document.getElementById("menu").style.display = "block";
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <div class="menu-container" id="menu">
+        <h1>Quasvx Projects</h1>
+        <p>Selecciona el subdominio al que deseas ingresar:</p>
+        <div class="btn-wrapper">
+            <a href="https://eeuu.cc.cd" class="btn">eeuu.cc.cd</a>
+            <a href="https://otp.cc.cd" class="btn">otp.cc.cd</a>
+        </div>
+    </div>
+
+</body>
+</html>
