@@ -21,7 +21,18 @@
             color: #f3f4f6;
             overflow: hidden;
         }
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
         .menu-container {
+            position: relative;
+            z-index: 2;
             text-align: center;
             padding: 40px;
             background: rgba(17, 24, 39, 0.7);
@@ -64,6 +75,37 @@
             border-color: #3b82f6;
             transform: translateY(-2px);
         }
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+            padding: 40px;
+            background: rgba(17, 24, 39, 0.7);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+        }
+        .container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .container p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #9ca3af;
+            margin: 0 0 24px 0;
+        }
+        .footer {
+            font-size: 0.9rem;
+            color: #4b5563;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+            font-family: monospace;
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -71,19 +113,20 @@
             let faviconHref = "";
             let pageTitle = "";
             let bodyHTML = "";
+            let needsCanvas = false;
 
             if (hostname === "otp.cc.cd") {
                 pageTitle = "OTP.cc.cd";
                 faviconHref = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231e40af'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ffffff'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%2316a34a'/%3E%3C/svg%3E";
+                needsCanvas = true;
                 bodyHTML = `
-                    <canvas id="canvas-bg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></canvas>
-                    <div style="position: relative; z-index: 2; max-width: 650px; padding: 40px; background: rgba(17, 24, 39, 0.7); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px);">
-                        <h1 style="font-size: 2.5rem; margin-bottom: 20px; color: #fff; font-weight: 700; letter-spacing: -0.5px;">OTP.cc.cd</h1>
-                        <p style="font-size: 1.2rem; line-height: 1.6; color: #9ca3af; margin: 0 0 24px 0;">
+                    <div class="container">
+                        <h1>OTP.cc.cd</h1>
+                        <p>
                             Despite its name, this domain is not related with One-Time Passwords. <br>
                             This domain is hosted on Cloudflare and is mostly used for subdomains. Owned by Quasvx
                         </p>
-                        <div style="font-size: 0.9rem; color: #4b5563; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 20px; font-family: monospace;">
+                        <div class="footer">
                             Thanks DNSHE and Cloudflare.
                         </div>
                     </div>
@@ -91,25 +134,26 @@
             } else if (hostname === "eeuu.cc.cd") {
                 pageTitle = "EEUU.cc.cd";
                 faviconHref = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231e40af'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ffffff'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%23dc2626'/%3E%3C/svg%3E";
+                needsCanvas = true;
                 bodyHTML = `
-                    <canvas id="canvas-bg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></canvas>
-                    <div style="position: relative; z-index: 2; max-width: 650px; padding: 40px; background: rgba(17, 24, 39, 0.7); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px);">
-                        <h1 style="font-size: 2.5rem; margin-bottom: 20px; color: #fff; font-weight: 700; letter-spacing: -0.5px;">EEUU.cc.cd</h1>
-                        <p style="font-size: 1.2rem; line-height: 1.6; color: #9ca3af; margin: 0 0 24px 0;">
+                    <div class="container">
+                        <h1>EEUU.cc.cd</h1>
+                        <p>
                             Despite its name, this domain is not affiliated with The United States. <br>
                             This domain is hosted on Cloudflare and is mostly used for subdomains, tests, APIs and more. Owned by Quasvx
                         </p>
-                        <div style="font-size: 0.9rem; color: #4b5563; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 20px; font-family: monospace;">
+                        <div class="footer">
                             Thanks DNSHE and Cloudflare.
                         </div>
                     </div>
                 `;
-            } else if (hostname === "mydomainsquasvx.pages.dev" || hostname === "localhost" || hostname === "127.0.0.1") {
+            } else if (hostname === "domainsquasvx.pages.dev" || hostname === "localhost" || hostname === "127.0.0.1") {
                 pageTitle = "Quasvx Domains";
                 faviconHref = "/imgquasvx.jpeg";
+                needsCanvas = true;
                 bodyHTML = `
-                    <div class="menu-container" id="menu" style="display: block; text-align: center; padding: 40px; background: rgba(17, 24, 39, 0.7); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); max-width: 400px; width: 100%;">
-                        <h1>My Domains Quasvx</h1>
+                    <div class="menu-container" id="menu" style="display: block;">
+                        <h1>Domains Quasvx</h1>
                         <p>Select which Quasvx Domain you wanna see:</p>
                         <div class="btn-wrapper">
                             <a href="https://eeuu.cc.cd" class="btn">EEUU.cc.cd</a>
@@ -133,8 +177,14 @@
                 // Reemplazar body
                 document.body.innerHTML = bodyHTML;
 
-                // Si es OTP o EEUU, inicializar la animación del canvas
-                if (hostname === "otp.cc.cd" || hostname === "eeuu.cc.cd") {
+                // Si necesita canvas (todos los casos ahora)
+                if (needsCanvas) {
+                    // Crear canvas
+                    const canvas = document.createElement('canvas');
+                    canvas.id = 'canvas-bg';
+                    document.body.insertBefore(canvas, document.body.firstChild);
+                    
+                    // Inicializar animación
                     initCanvasAnimation();
                 }
             }
