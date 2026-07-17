@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
@@ -13,6 +12,65 @@
 <meta name="robots" content="noindex, nofollow" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="stylesheet" id="cf_styles-css" href="/cdn-cgi/styles/main.css" />
+<style>
+    /* Estilos específicos para la versión de Gcore 404 */
+    .gcore-wrapper {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        background-color: #0b0f19;
+        color: #f3f4f6;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .gcore-container {
+        text-align: center;
+        max-width: 500px;
+        padding: 40px;
+        background: rgba(17, 24, 39, 0.7);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .gcore-code {
+        font-size: 6rem;
+        font-weight: 800;
+        margin: 0;
+        color: #6d28d9; /* Tono morado Gcore/Bot */
+        line-height: 1;
+    }
+    .gcore-title {
+        font-size: 1.8rem;
+        margin: 15px 0 10px 0;
+        color: #fff;
+    }
+    .gcore-desc {
+        color: #9ca3af;
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+    .gcore-footer {
+        font-size: 0.85rem;
+        color: #4b5563;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 15px;
+        font-family: monospace;
+    }
+    .gcore-footer a {
+        color: #3b82f6;
+        text-decoration: none;
+    }
+    .gcore-footer a:hover {
+        text-decoration: underline;
+    }
+</style>
 </head>
 <body>
 <div id="cf-wrapper">
@@ -129,17 +187,44 @@
         const currentPath = window.location.pathname + window.location.search + window.location.hash;
         const fullUrl = currentHost + currentPath;
         
-        // Actualizar titulo con la URL
+        // Si entra por a1.bot.cd, inyectamos la interfaz 404 limpia estilo Gcore
+        if (currentHost === "a1.bot.cd") {
+            document.title = "404 Not Found | Gcore";
+            
+            const wrapper = document.getElementById("cf-wrapper");
+            if (wrapper) {
+                // Cambiamos las clases del body para romper el diseño por defecto de Cloudflare
+                document.body.className = "";
+                
+                // Inyectamos el HTML al estilo Gcore Edge Response
+                wrapper.innerHTML = `
+                    <div class="gcore-wrapper">
+                        <div class="gcore-container">
+                            <h1 class="gcore-code">404</h1>
+                            <div class="gcore-title">Resource Not Found</div>
+                            <p class="gcore-desc">
+                                The requested path <strong style="color: #fff;">/${window.location.pathname.substring(1)}</strong> was not found on this server.<br>
+                                This API/Backend endpoint might have been moved or doesn't exist.
+                            </p>
+                            <div class="gcore-footer">
+                                Powered by <a href="https://gcore.com" target="_blank" rel="noopener noreferrer">Gcore Edge Network</a> &bull; Managed by Quasvx
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            return; // Cortamos la ejecución del script de Cloudflare para este dominio
+        }
+
+        // --- CÓDIGO ORIGINAL DE CLOUDFLARE PARA OTROS DOMINIOS ---
         document.title = currentHost + ' | 404: Not Found';
         
-        // Actualizar hostname en el panel de estado
         const hostnameSpan = document.getElementById('hostname-display');
         const requestedUrlSpan = document.getElementById('requested-url');
         
         if (hostnameSpan) hostnameSpan.textContent = currentHost;
         if (requestedUrlSpan) requestedUrlSpan.textContent = fullUrl;
         
-        // Timestamp actual
         const timeElement = document.getElementById('current-time');
         if (timeElement) {
             const now = new Date();
@@ -147,29 +232,24 @@
             timeElement.textContent = formatted;
         }
         
-        // Ray ID aleatorio
         const rayElement = document.getElementById('ray-id');
         if (rayElement) {
             const randomHex = () => Math.floor(Math.random() * 16777215).toString(16);
             rayElement.textContent = randomHex() + randomHex().slice(0, 4);
         }
         
-        // Obtener IP real y ubicacion del servidor mas cercano de Cloudflare
         fetch('https://ipapi.co/json/')
             .then(response => response.json())
             .then(data => {
-                // Mostrar IP real
                 const ipSpan = document.getElementById('cf-footer-ip');
                 if (ipSpan && data.ip) {
                     ipSpan.textContent = data.ip;
                 }
                 
-                // Determinar servidor Cloudflare mas cercano segun pais/ciudad
                 const country = data.country_code;
                 const city = data.city;
                 let closestServer = 'Miami';
                 
-                // Mapeo de servidores Cloudflare por region
                 if (country === 'ES' || country === 'FR' || country === 'DE' || country === 'IT' || country === 'PT' || country === 'NL' || country === 'BE') {
                     closestServer = 'Madrid';
                 } else if (country === 'GB' || country === 'IE') {
@@ -216,7 +296,6 @@
                 if (locationSpan) locationSpan.textContent = closestServer;
             })
             .catch(() => {
-                // Fallback si no se puede obtener la IP
                 const ipSpan = document.getElementById('cf-footer-ip');
                 if (ipSpan) ipSpan.textContent = 'Unable to detect';
                 
