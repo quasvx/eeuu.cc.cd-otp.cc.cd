@@ -115,16 +115,17 @@
             let bodyHTML = "";
             let needsCanvas = false;
 
-            if (hostname === "otp.cc.cd") {
-                pageTitle = "OTP.cc.cd";
-                faviconHref = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231e40af'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ffffff'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%2316a34a'/%3E%3C/svg%3E";
+            if (hostname === "a1.bot.cd") {
+                pageTitle = "a1.bot.cd";
+                // Favicon personalizado con tono púrpura/azul para estilo bot
+                faviconHref = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%236d28d9'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ffffff'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%233b82f6'/%3E%3C/svg%3E";
                 needsCanvas = true;
                 bodyHTML = `
                     <div class="container">
-                        <h1>OTP.cc.cd</h1>
+                        <h1>a1.bot.cd</h1>
                         <p>
-                            Despite its name, this domain is not related with One-Time Passwords. <br>
-                            This domain is hosted on Cloudflare and is mostly used for subdomains. Owned by Quasvx
+                            This domain is hosted on Cloudflare and managed by Quasvx.<br>
+                            It is commonly used for APIs and backend services, and rarely for other miscellaneous projects.
                         </p>
                         <div class="footer">
                             Thanks DNSHE and Cloudflare.
@@ -149,7 +150,6 @@
                 `;
             } else if (hostname === "my.b4.cc.cd") {
                 pageTitle = "b4.cc.cd — Short.io by Quasvx";
-                // Favicon blanco y verde: círculo verde con interior blanco
                 faviconHref = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2316a34a'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ffffff'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%2316a34a'/%3E%3C/svg%3E";
                 needsCanvas = true;
                 bodyHTML = `
@@ -174,7 +174,7 @@
                         <p>Select which Quasvx Domain you wanna see:</p>
                         <div class="btn-wrapper">
                             <a href="https://eeuu.cc.cd" class="btn">EEUU.cc.cd</a>
-                            <a href="https://otp.cc.cd" class="btn">OTP.cc.cd</a>
+                            <a href="https://a1.bot.cd" class="btn">a1.bot.cd</a>
                             <a href="https://my.b4.cc.cd" class="btn">b4.cc.cd (Short.io)</a>
                         </div>
                     </div>
@@ -195,14 +195,11 @@
                 // Reemplazar body
                 document.body.innerHTML = bodyHTML;
 
-                // Si necesita canvas (todos los casos ahora)
+                // Si necesita canvas
                 if (needsCanvas) {
-                    // Crear canvas
                     const canvas = document.createElement('canvas');
                     canvas.id = 'canvas-bg';
                     document.body.insertBefore(canvas, document.body.firstChild);
-                    
-                    // Inicializar animación
                     initCanvasAnimation();
                 }
             }
