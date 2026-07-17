@@ -12,63 +12,136 @@
 <meta name="robots" content="noindex, nofollow" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="stylesheet" id="cf_styles-css" href="/cdn-cgi/styles/main.css" />
+
+<!-- Estilos nativos clonados de Gcore 404 -->
 <style>
-    /* Estilos específicos para la versión de Gcore 404 */
-    .gcore-wrapper {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-        background-color: #0b0f19;
-        color: #f3f4f6;
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4MV96frMAvncL_Mg_X.woff2') format('woff2');
+        font-weight: 400 700;
+        font-display: swap;
+    }
+    
+    .gcore-404-body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Montserrat', sans-serif;
+        background-color: #fff !important;
+        color: #150c18 !important;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         height: 100vh;
         width: 100vw;
-        margin: 0;
-        padding: 20px;
         box-sizing: border-box;
     }
-    .gcore-container {
+
+    .gc-content-wrapper-404 {
+        padding-top: 2rem;
+        padding-bottom: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
-        max-width: 500px;
-        padding: 40px;
-        background: rgba(17, 24, 39, 0.7);
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        max-width: 1128px;
+        margin: 0 auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
-    .gcore-code {
-        font-size: 6rem;
-        font-weight: 800;
+
+    .gc-image-404 {
+        position: relative;
+        display: block;
+        max-width: 29rem;
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .gc-illustration {
+        width: 100%;
+        height: auto;
+    }
+
+    .gc-404-title {
         margin: 0;
-        color: #6d28d9; /* Tono morado Gcore/Bot */
-        line-height: 1;
+        margin-bottom: 1.25rem;
+        font-size: 12.25rem;
+        line-height: 12.25rem;
+        font-weight: 600;
+        letter-spacing: -1px;
+        color: #000;
     }
-    .gcore-title {
-        font-size: 1.8rem;
-        margin: 15px 0 10px 0;
-        color: #fff;
+
+    .gc-not-found-subtitle {
+        margin: 0;
+        margin-bottom: 2rem;
+        font-size: 3rem;
+        line-height: 110%;
+        font-weight: 600;
+        letter-spacing: -1px;
+        color: #000;
     }
-    .gcore-desc {
-        color: #9ca3af;
+
+    .gc-btn-gcore {
+        display: inline-block;
+        padding: .75rem 1.5rem;
+        min-width: 3rem;
+        background-color: #ff4c00;
+        color: #fff !important;
+        border: 1px solid transparent;
+        border-radius: 6.25rem;
         font-size: 1rem;
-        line-height: 1.5;
-        margin-bottom: 25px;
-    }
-    .gcore-footer {
-        font-size: 0.85rem;
-        color: #4b5563;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        padding-top: 15px;
-        font-family: monospace;
-    }
-    .gcore-footer a {
-        color: #3b82f6;
+        line-height: 1.5rem;
+        font-weight: 600;
         text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        transition: .15s;
     }
-    .gcore-footer a:hover {
-        text-decoration: underline;
+
+    .gc-btn-gcore:hover {
+        background-color: #f87239;
+    }
+
+    .gc-btn-gcore:active {
+        background-color: #f58a5c;
+    }
+
+    .gc-line-404 {
+        margin: 2rem 0 1.5rem;
+        background-color: #939393;
+        height: 1px;
+        width: 100%;
+        max-width: 75rem;
+    }
+
+    .gc-section-text-404 {
+        margin: 0;
+        line-height: 140%;
+        font-size: 1.25rem;
+        color: #000;
+        font-weight: 500;
+    }
+
+    @media (max-width: 1128px) or (max-height: 900px) {
+        .gc-content-wrapper-404 {
+            padding-top: 4rem;
+            padding-bottom: 6rem;
+        }
+        .gc-image-404 {
+            max-width: 19rem;
+        }
+        .gc-404-title {
+            font-size: 8rem;
+            line-height: 8rem;
+        }
+        .gc-not-found-subtitle {
+            font-size: 2rem;
+        }
+        .gc-section-text-404 {
+            font-size: .875rem;
+        }
     }
 </style>
 </head>
@@ -90,20 +163,12 @@
                 <div class="clearfix md:px-8">
                     <div id="cf-browser-status" class=" relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center">
   <div class="relative mb-10 md:m-0">
-    
     <span class="cf-icon-browser block md:hidden h-20 bg-center bg-no-repeat"></span>
     <span class="cf-icon-ok w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4"></span>
-    
   </div>
   <span class="md:block w-full truncate">You</span>
-  <h3 class="md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3">
-  
-    Browser
-  
-  </h3>
-  
+  <h3 class="md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3">Browser</h3>
   <span class="leading-1.3 text-2xl text-green-success">Working</span>
-  
 </div>
                     <div id="cf-cloudflare-status" class=" relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center">
   <div class="relative mb-10 md:m-0">
@@ -114,30 +179,18 @@
   </div>
   <span class="md:block w-full truncate" id="cf-location">Loading...</span>
   <h3 class="md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3">
-  <a href="https://www.cloudflare.com/5xx-error-landing" target="_blank" rel="noopener noreferrer">
-    Cloudflare
-  </a>
+    <a href="https://www.cloudflare.com/5xx-error-landing" target="_blank" rel="noopener noreferrer">Cloudflare</a>
   </h3>
-  
   <span class="leading-1.3 text-2xl text-green-success">Working</span>
-  
 </div>
                     <div id="cf-host-status" class="cf-error-source relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center">
   <div class="relative mb-10 md:m-0">
-    
     <span class="cf-icon-server block md:hidden h-20 bg-center bg-no-repeat"></span>
     <span class="cf-icon-error w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4"></span>
-    
   </div>
   <span class="md:block w-full truncate" id="hostname-display">Loading...</span>
-  <h3 class="md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3">
-  
-    Host
-  
-  </h3>
-  
+  <h3 class="md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3">Host</h3>
   <span class="leading-1.3 text-2xl text-red-error">Error</span>
-  
 </div>
                 </div>
             </div>
@@ -152,10 +205,8 @@
                 </div>
                 <div class="w-1/2 md:w-full float-left leading-relaxed">
                     <h2 class="text-3xl font-normal leading-1.3 mb-4">What can I do?</h2>
-                    
                 <h3 class="text-15 font-semibold mb-2">If you're a visitor of this website:</h3>
                 <p class="mb-6">Please check the URL for typos or try again later.</p>
-
                 <h3 class="text-15 font-semibold mb-2">If you're the owner of this website:</h3>
                 <p><span>The requested content may have been moved or deleted. Check your server configuration or file paths.</span> <a rel="noopener noreferrer" href="https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-4xx-errors/error-404/">Additional troubleshooting information here.</a></p>
                 </div>
@@ -173,11 +224,8 @@
         <span class="cf-footer-separator sm:hidden">&bull;</span>
       </span>
       <span class="cf-footer-item sm:block sm:mb-1"><span>Performance &amp; security by</span> <a rel="noopener noreferrer" href="https://www.cloudflare.com/5xx-error-landing" id="brand_link" target="_blank">Cloudflare</a></span>
-      
     </p>
-    <script>(function(){function d(){var b=a.getElementById("cf-footer-item-ip"),c=a.getElementById("cf-footer-ip-reveal");b&&"classList"in b&&(b.classList.remove("hidden"),c.addEventListener("click",function(){c.classList.add("hidden");a.getElementById("cf-footer-ip").classList.remove("hidden")}))}var a=document;document.addEventListener&&a.addEventListener("DOMContentLoaded",d)})();</script>
-  </div><!-- /.error-footer -->
-
+  </div>
     </div>
 </div>
 
@@ -187,41 +235,46 @@
         const currentPath = window.location.pathname + window.location.search + window.location.hash;
         const fullUrl = currentHost + currentPath;
         
-        // Si entra por a1.bot.cd, inyectamos la interfaz 404 limpia estilo Gcore
-        if (currentHost === "a1.bot.cd/*") {
-            document.title = "404 Not Found | Gcore";
+        // --- INTERCEPTOR DE GCORE MEJORADO (Soporta el dominio raíz y subrutas /*) ---
+        if (currentHost === "a1.bot.cd" || currentHost.endsWith(".a1.bot.cd")) {
+            document.title = "Page not found";
             
             const wrapper = document.getElementById("cf-wrapper");
             if (wrapper) {
-                // Cambiamos las clases del body para romper el diseño por defecto de Cloudflare
-                document.body.className = "";
+                // Cambiamos las clases del body para usar el look limpio de Gcore
+                document.body.className = "gcore-404-body";
                 
-                // Inyectamos el HTML al estilo Gcore Edge Response
+                // Inyección del clon exacto del HTML 404 del origin de Gcore
                 wrapper.innerHTML = `
-                    <div class="gcore-wrapper">
-                        <div class="gcore-container">
-                            <h1 class="gcore-code">404</h1>
-                            <div class="gcore-title">Resource Not Found</div>
-                            <p class="gcore-desc">
-                                The requested path <strong style="color: #fff;">/${window.location.pathname.substring(1)}</strong> was not found on this server.<br>
-                                This API/Backend endpoint might have been moved or doesn't exist.
-                            </p>
-                            <div class="gcore-footer">
-                                Powered by <a href="https://gcore.com" target="_blank" rel="noopener noreferrer">Gcore Edge Network</a> &bull; Managed by Quasvx
-                            </div>
-                        </div>
+                    <div class="gc-content-wrapper-404">
+                        <picture class="gc-image-404">
+                            <svg class="gc-illustration" viewBox="0 0 464 304" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M403.47 242.11c-15.12 25.13-43.14 41.89-75.14 41.89s-60.02-16.76-75.14-41.89h150.28z" fill="#F4F3F4"/>
+                                <circle cx="132" cy="144" r="92" fill="#FF4C00" opacity=".05"/>
+                                <circle cx="332" cy="156" r="124" fill="#FF4C00" opacity=".03"/>
+                                <path d="M192 144c0 33.137-26.863 60-60 60s-60-26.863-60-60 26.863-60 60-60 60 26.863 60 60z" fill="#FF4C00" opacity=".08"/>
+                                <path d="M304 84h-48c-4.4 0-8 3.6-8 8v128c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V92c0-4.4-3.6-8-8-8zm-8 120h-32V100h32v104z" fill="#150C18"/>
+                                <path d="M148 108h-24c-4.4 0-8 3.6-8 8v32h-32c-4.4 0-8 3.6-8 8v24c0 4.4 3.6 8 8 8h32v32c0 4.4 3.6 8 8 8h24c4.4 0 8-3.6 8-8v-32h16c4.4 0 8-3.6 8-8v-24c0-4.4-3.6-8-8-8h-16v-32c0-4.4-3.6-8-8-8z" fill="#FF4C00"/>
+                                <path d="M400 124h-48c-4.4 0-8 3.6-8 8v16h-32c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8v-80c0-4.4-3.6-8-8-8zm-8 64h-56v-32h32v16h24v16z" fill="#150C18"/>
+                            </svg>
+                        </picture>
+                        <h2 class="gc-404-title">404</h2>
+                        <h3 class="gc-not-found-subtitle">Page not found</h3>
+                        <a class="gc-btn-gcore" href="/">Back to home</a>
+                        <div class="gc-line-404"></div>
+                        <p class="gc-section-text-404">
+                            Oops! The page you're looking for doesn't exist. Let's get you back to one that does.
+                        </p>
                     </div>
                 `;
             }
-            return; // Cortamos la ejecución del script de Cloudflare para este dominio
+            return; // Detiene la ejecución para a1.bot.cd/*
         }
 
-        // --- CÓDIGO ORIGINAL DE CLOUDFLARE PARA OTROS DOMINIOS ---
+        // --- MANEJO ORIGINAL DE CLOUDFLARE PARA OTROS HOSTS ---
         document.title = currentHost + ' | 404: Not Found';
-        
         const hostnameSpan = document.getElementById('hostname-display');
         const requestedUrlSpan = document.getElementById('requested-url');
-        
         if (hostnameSpan) hostnameSpan.textContent = currentHost;
         if (requestedUrlSpan) requestedUrlSpan.textContent = fullUrl;
         
@@ -242,55 +295,29 @@
             .then(response => response.json())
             .then(data => {
                 const ipSpan = document.getElementById('cf-footer-ip');
-                if (ipSpan && data.ip) {
-                    ipSpan.textContent = data.ip;
-                }
+                if (ipSpan && data.ip) ipSpan.textContent = data.ip;
                 
                 const country = data.country_code;
                 const city = data.city;
                 let closestServer = 'Miami';
                 
-                if (country === 'ES' || country === 'FR' || country === 'DE' || country === 'IT' || country === 'PT' || country === 'NL' || country === 'BE') {
-                    closestServer = 'Madrid';
-                } else if (country === 'GB' || country === 'IE') {
-                    closestServer = 'London';
-                } else if (country === 'MX' || country === 'GT' || country === 'CR' || country === 'PA') {
-                    closestServer = 'Mexico City';
-                } else if (country === 'CO' || country === 'VE' || country === 'PE' || country === 'BO') {
-                    closestServer = 'Bogota';
-                } else if (country === 'CL' || country === 'AR' || country === 'UY' || country === 'PY') {
-                    closestServer = 'Santiago';
-                } else if (country === 'BR') {
-                    closestServer = 'Sao Paulo';
-                } else if (country === 'US') {
-                    if (city && (city.includes('Los Angeles') || city.includes('San Francisco') || city.includes('Seattle') || city.includes('Portland'))) {
-                        closestServer = 'Los Angeles';
-                    } else if (city && (city.includes('Chicago') || city.includes('Dallas') || city.includes('Houston'))) {
-                        closestServer = 'Dallas';
-                    } else if (city && (city.includes('New York') || city.includes('Washington') || city.includes('Boston') || city.includes('Miami'))) {
-                        closestServer = 'New York';
-                    } else {
-                        closestServer = 'Chicago';
-                    }
-                } else if (country === 'CA') {
-                    closestServer = 'Toronto';
-                } else if (country === 'JP') {
-                    closestServer = 'Tokyo';
-                } else if (country === 'CN' || country === 'HK' || country === 'TW') {
-                    closestServer = 'Hong Kong';
-                } else if (country === 'KR') {
-                    closestServer = 'Seoul';
-                } else if (country === 'IN' || country === 'PK' || country === 'BD' || country === 'LK') {
-                    closestServer = 'Mumbai';
-                } else if (country === 'AU' || country === 'NZ') {
-                    closestServer = 'Sydney';
-                } else if (country === 'ZA') {
-                    closestServer = 'Johannesburg';
-                } else if (country === 'RU') {
-                    closestServer = 'Moscow';
-                } else if (country === 'AE' || country === 'SA' || country === 'EG' || country === 'QA') {
-                    closestServer = 'Dubai';
+                if (country === 'ES' || country === 'FR' || country === 'DE' || country === 'IT' || country === 'PT' || country === 'NL' || country === 'BE') closestServer = 'Madrid';
+                else if (country === 'GB' || country === 'IE') closestServer = 'London';
+                else if (country === 'MX' || country === 'GT' || country === 'CR' || country === 'PA') closestServer = 'Mexico City';
+                else if (country === 'CO' || country === 'VE' || country === 'PE' || country === 'BO') closestServer = 'Bogota';
+                else if (country === 'CL' || country === 'AR' || country === 'UY' || country === 'PY') closestServer = 'Santiago';
+                else if (country === 'BR') closestServer = 'Sao Paulo';
+                else if (country === 'US') {
+                    if (city && (city.includes('Los Angeles') || city.includes('San Francisco') || city.includes('Seattle') || city.includes('Portland'))) closestServer = 'Los Angeles';
+                    else if (city && (city.includes('Chicago') || city.includes('Dallas') || city.includes('Houston'))) closestServer = 'Dallas';
+                    else if (city && (city.includes('New York') || city.includes('Washington') || city.includes('Boston') || city.includes('Miami'))) closestServer = 'New York';
+                    else closestServer = 'Chicago';
                 }
+                else if (country === 'CA') closestServer = 'Toronto';
+                else if (country === 'JP') closestServer = 'Tokyo';
+                else if (country === 'CN' || country === 'HK' || country === 'TW') closestServer = 'Hong Kong';
+                else if (country === 'KR') closestServer = 'Seoul';
+                else if (country === 'IN' || country === 'PK' || country === 'BD' || country === 'LK') closestServer = 'Mumbai';
                 
                 const locationSpan = document.getElementById('cf-location');
                 if (locationSpan) locationSpan.textContent = closestServer;
@@ -298,12 +325,10 @@
             .catch(() => {
                 const ipSpan = document.getElementById('cf-footer-ip');
                 if (ipSpan) ipSpan.textContent = 'Unable to detect';
-                
                 const locationSpan = document.getElementById('cf-location');
                 if (locationSpan) locationSpan.textContent = 'Miami';
             });
     })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0810f90ef8125b3',t:'MTc4MDg1MDAzMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"9765872abfc4413e9ef3805c8d5923ac","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
