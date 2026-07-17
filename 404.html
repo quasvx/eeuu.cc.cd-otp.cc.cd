@@ -188,7 +188,7 @@
         const fullUrl = currentHost + currentPath;
         
         // Si entra por a1.bot.cd, inyectamos la interfaz 404 limpia estilo Gcore
-        if (currentHost === "a1.bot.cd") {
+        if (currentHost === "a1.bot.cd/*") {
             document.title = "404 Not Found | Gcore";
             
             const wrapper = document.getElementById("cf-wrapper");
